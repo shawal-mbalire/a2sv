@@ -1,3 +1,9 @@
 streamlit
+python-dotenv
 sqlalchemy
 pg8000
+fastapi
+requests
+pydantic
+seaborn
+matplotlib
