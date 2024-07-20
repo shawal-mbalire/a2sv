@@ -25,7 +25,7 @@ engine = create_engine(DATABASE_URL)
 st.title("Power Usage Analysis and Anomaly Detection")
 
 # Function to fetch data from the database
-@st.cache
+@st.cache_data
 def fetch_data(query):
     with engine.connect() as connection:
         return pd.read_sql(query, connection)
@@ -77,7 +77,7 @@ st.subheader("Anomalies Over Time")
 # Plotting anomalies over time for filtered users
 filtered_anomalies = anomaly_predictions_df[anomaly_predictions_df['user_id'].isin(filtered_users)]
 fig, ax = plt.subplots(figsize=(10, 6))
-sns.scatterplot(data=filtered_anomalies, x='date_predicted', y='user_id', hue='anomaly', palette={True: 'red', False: 'blue'}, ax=ax)
+sns.scatterplot(data=filtered_anomalies, x='date_predicted', y='user_id', hue='anomaly', ax=ax)
 plt.xticks(rotation=45)
 st.pyplot(fig)
 
